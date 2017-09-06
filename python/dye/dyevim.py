@@ -36,7 +36,7 @@ from collections import defaultdict
 
 import vim
 
-DV_SUPPORTED_FILETYPES = set( [ 'cpp' ] )
+DV_SUPPORTED_FILETYPES = set( [ 'c', 'cpp' ] )
 DV_UNIQUE_WID_VAR = 'DyeVimUniqueWId'
 
 class DyeVim( object ):
@@ -95,6 +95,8 @@ class DyeVim( object ):
 
     def _InitializeCurrentFiletypeIfNeeded( self ):
         ft = vim.current.buffer.options[ 'filetype' ]
+        if not isinstance(ft, str):
+            ft = str(ft, encoding='utf-8')
         if ft not in self._initialized_filetypes:
             try:
                 vim.command('call dyevim#ft#' + ft + '#Setup()')
@@ -105,6 +107,8 @@ class DyeVim( object ):
 
     def _IsFileTypeSupported( self ):
         ft = vim.current.buffer.options[ 'filetype' ]
+        if not isinstance(ft, str):
+            ft = str(ft, encoding='utf-8')
         return ft in DV_SUPPORTED_FILETYPES
 
 
