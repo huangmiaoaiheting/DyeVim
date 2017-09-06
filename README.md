@@ -82,9 +82,11 @@ Caveats
 
 C highlighting is not working yet, but it will be soon
 (need to add coloring scheme).
+Resolved,but only test in color scheme gruvbox.
 
 Since I mainly use gvim in my workflow, there is no terminal support... yet,
 sorry for that.
+Resolved,but only test in color scheme gruvbox.
 
 
 Acknowledgements
