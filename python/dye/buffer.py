@@ -98,6 +98,8 @@ class Buffer( object ):
             return
 
         ft = vimsupport.GetFileType( self.number )
+        if not isinstance(ft, str):
+            ft = str(ft, encoding='utf-8')
         tokens = []
         for sr_dict in skipped_ranges:
             sr = Range( sr_dict )
@@ -136,6 +138,8 @@ class Buffer( object ):
             return False
 
         ft = vimsupport.GetFileType( self.number )
+        if not isinstance(ft, str):
+            ft = str(ft, encoding='utf-8')
         tokens = []
         for td in token_dicts:
             tk = td[ 'kind' ]
