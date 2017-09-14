@@ -121,8 +121,16 @@ class DyeVim( object ):
 
     def _SetCurrentWId( self ):
         if not vim.current.window.vars.has_key( DV_UNIQUE_WID_VAR ):
+            wid = self._nextUniqueWId
             vim.current.window.vars[ DV_UNIQUE_WID_VAR ] = self._nextUniqueWId
             self._nextUniqueWId += 1
+            if not self._IsFileTypeSupported():
+                return
+            self._InitializeCurrentFiletypeIfNeeded()
+            bnr = vim.current.buffer.number
+            if self._windowBuffer[ wid ] != bnr:
+                self._windowBuffer[ wid ] = bnr
+                self._windows[ wid ].OnBufferChanged( self._buffers[ bnr ] )
 
 
     def _GetWIdBuffer( self, wid ):

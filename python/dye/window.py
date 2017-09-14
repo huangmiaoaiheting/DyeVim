@@ -76,8 +76,8 @@ class Window( object ):
 
 
     def OnViewportChanged( self, current ):
-        log.debug( "Viewport Changed {0} -> {1}"
-                   .format( self._viewport, current ) )
+        log.debug( "Viewport Changed {0} -> {1}, wid:{2}, buffer:{3}"
+                   .format( self._viewport, current, self._wid, self._buffer.number ) )
         remove_views = self._viewport - current
         for view in remove_views:
             self._RemoveMatchesFromInterval( view )
